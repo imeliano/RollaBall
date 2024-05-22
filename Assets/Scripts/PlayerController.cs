@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        ControlState = "Normal";
+        MoveType = "Sloppy";
         rb = GetComponent<Rigidbody>();
         count = 0;
         InvisCount = 0;
@@ -432,6 +434,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "ThirdPerson")
         {
+            print("log");
             other.gameObject.SetActive(false);
             CC.Lock();
             movement1 = transform.forward;

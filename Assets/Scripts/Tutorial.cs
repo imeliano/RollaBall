@@ -134,7 +134,7 @@ public class Tutorial : MonoBehaviour
 
         if (other.gameObject.tag == "CameraFlipTP")
         {
-            transform.position = new Vector3(-147, -9, -81);
+            transform.position = new Vector3(-38, -9, -114);
         }
 
         if (other.gameObject.tag == "FirstPersonTP")
@@ -145,7 +145,7 @@ public class Tutorial : MonoBehaviour
         if (other.gameObject.tag == "ThirdPersonTP")
         {
             transform.position = new Vector3(66, -9, 102);
-            GetComponent<PlayerController>().ControlState = "ThirdPerson";
+            //GetComponent<PlayerController>().ControlState = "ThirdPerson";
         }
         //other.gameObject.SetActive(false);
     }
