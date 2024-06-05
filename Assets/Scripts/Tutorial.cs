@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 
 
@@ -18,6 +19,7 @@ public class Tutorial : MonoBehaviour
     private bool Part2 = false;
     private bool DeathBlock = false;
     private bool Level3 = false;
+
 
     void Start()
     {
@@ -46,6 +48,14 @@ public class Tutorial : MonoBehaviour
         Text2.SetActive(false);
         Text3.SetActive(false);
         Text1.SetActive(false);
+    }
+    IEnumerator GoBackToCameraSelector()
+    {
+        yield return new WaitForSeconds(30);
+        transform.position = new Vector3(0.33f, 39.77f, -21.1f);
+        PlayerController PC = GetComponent<PlayerController>();
+        PC.ControlState = "Normal";
+        PC.ResetCamera();
     }
     void Update()
     {
@@ -125,27 +135,31 @@ public class Tutorial : MonoBehaviour
         if (other.gameObject.tag == "CameraDownTP")
         {
             transform.position = new Vector3(-78.37f, -9, 124);
+            StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "CameraLeftTP")
         {
             transform.position = new Vector3(-156, -9, 14);
+            StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "CameraFlipTP")
         {
             transform.position = new Vector3(-38, -9, -114);
+            StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "FirstPersonTP")
         {
             transform.position = new Vector3(117, -9, -41);
+            StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "ThirdPersonTP")
         {
             transform.position = new Vector3(66, -9, 102);
-            //GetComponent<PlayerController>().ControlState = "ThirdPerson";
+            StartCoroutine(GoBackToCameraSelector()); 
         }
         //other.gameObject.SetActive(false);
     }

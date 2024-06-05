@@ -70,7 +70,6 @@ public class CameraController : MonoBehaviour
 
     public void Flip(float z)
     {
-
         Changeoffset(offset.x, offset.y, -offset.z);
         transform.rotation = Quaternion.Euler(45, 180, 0);
     }

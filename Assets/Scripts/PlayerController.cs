@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UIElements;
+//using System.Numerics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float UpForce = 0f;
-    private Vector3 Respawn;
+    private UnityEngine.Vector3 Respawn;
     public CameraController CC;
     private float speedZ = 1f;
     private float Tries = 0f;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem PS2;
     public ParticleSystem PS3;
     public ParticleSystem PS4;
-    private Vector3 movement1;
+    private UnityEngine.Vector3 movement1;
     public float movespeed1;
     public float InvisCount;
     public string ControlState = "Normal";
@@ -47,7 +48,11 @@ public class PlayerController : MonoBehaviour
     public float FallFactor = 0.1f;
     public string MoveType = "Sloppy"; //Set to "Crisp"
 
-
+    public void ResetCamera()
+    {
+        CC.Changeoffset(0, 10, -10);
+        Camera.main.transform.rotation = Quaternion.Euler(45, 0, 0);
+    }
     public int GetForcePush()
     {
         return ForcePush;
@@ -76,7 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         Goals = 0;
     }
-    public void SetMovement(Vector3 move1)
+    public void SetMovement(UnityEngine.Vector3 move1)
     {
         movement1 = move1;
     }
@@ -271,8 +276,7 @@ public class PlayerController : MonoBehaviour
             speed = Mathf.Abs(speed);
             transform.position = Respawn;
             count = Mathf.RoundToInt(count * 0.9f);
-            CC.Changeoffset(0, 10, -10);
-            Camera.main.transform.rotation = Quaternion.Euler(45, 0, 0);
+            ResetCamera();
             speedZ = 1;
             TimerTextObject.SetActive(false);
             timer.IsRunning = false;
@@ -304,7 +308,6 @@ public class PlayerController : MonoBehaviour
         {
             speed = -Mathf.Abs(speed);
             Camera.main.transform.rotation = Quaternion.Euler(45, 180, 0);
-            Transform camera = Camera.main.transform;
             CC.Changeoffset(0, 10, 10);
             other.gameObject.SetActive(true);
         }
@@ -315,16 +318,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "CameraUp")
         {
             Camera.main.transform.rotation = Quaternion.Euler(-90, 180, 0);
-            Transform camera = Camera.main.transform;
             CC.Changeoffset(0, -10, 0);
             speedZ = -1;
             CC.Unlock();
         }
         if (other.gameObject.tag == "CameraNormal")
         {
-            Camera.main.transform.rotation = Quaternion.Euler(45, 0, 0);
-            Transform camera = Camera.main.transform;
-            CC.Changeoffset(0, 10, -10);
+            ResetCamera();
             other.gameObject.SetActive(false);
             ControlState = "Normal";
             CC.Unlock();
@@ -332,11 +332,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "CameraTurn")
         {
             Camera.main.transform.rotation = Quaternion.Euler(45, -90, 0);
-            Transform camera = Camera.main.transform;
             CC.Changeoffset(10, 10, 0);
             ControlState = "Left";
             CC.Unlock();
-            speed = 20;
 
         }
         if (other.gameObject.tag == "CameraDownLeft")
@@ -434,15 +432,14 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "ThirdPerson")
         {
-            print("log");
             other.gameObject.SetActive(false);
             CC.Lock();
             movement1 = transform.forward;
             ControlState = "ThirdPerson";
-            Level7Generator.Randomize();
+            FL.SetActive(true);
             transform.Find("Force").gameObject.SetActive(true);
             gameObject.transform.localScale = new Vector3(2, 2, 2);
-            FL.SetActive(true);
+            Level7Generator.Randomize();
         }
         if (other.gameObject.tag == "GoToLevel7")
         {
