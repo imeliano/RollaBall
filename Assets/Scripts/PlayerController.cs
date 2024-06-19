@@ -50,8 +50,12 @@ public class PlayerController : MonoBehaviour
 
     public void ResetCamera()
     {
+        CC.Unlock();
+        FL.SetActive(false);
+        ControlState = "Normal";
         CC.Changeoffset(0, 10, -10);
         Camera.main.transform.rotation = Quaternion.Euler(45, 0, 0);
+        speed = Mathf.Abs(speed);
     }
     public int GetForcePush()
     {

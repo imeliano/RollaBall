@@ -58862,13 +58862,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339351176}
-  m_LocalRotation: {x: -0.082540505, y: -0.21688405, z: -0.051699385, w: 0.97132677}
-  m_LocalPosition: {x: 3.939, y: 1.547, z: 44.717}
-  m_LocalScale: {x: 0.12515156, y: 1, z: 0.09063269}
+  m_LocalRotation: {x: -0.20693249, y: 0.69715255, z: 0.6354651, w: 0.25950247}
+  m_LocalPosition: {x: 4.2182, y: 2.1846, z: 44.3439}
+  m_LocalScale: {x: 0.147345, y: 1.3675, z: 0.14197427}
   m_Children: []
   m_Father: {fileID: 750823954}
   m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: -10.531, y: -24.826, z: -3.769}
+  m_LocalEulerAnglesHint: {x: -83.429, y: 120.272, z: 21.147}
 --- !u!4 &1339723764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 825729241685330841, guid: 5bc55f491b2ed4ee0878dabb1d846609, type: 3}
@@ -70596,7 +70596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1506596537
 Transform:
   m_ObjectHideFlags: 0
@@ -72107,7 +72107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549332910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.94, y: 203.69, z: -118.22}
+  m_LocalPosition: {x: -9.07, y: -5.64, z: 64.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2082083593}
@@ -72156,7 +72156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21205885a6c104a18b2d69d2fd52cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 5
   PickUp: {fileID: 882790244}
   countText: {fileID: 321101121}
   GoalsMade: {fileID: 9704821}

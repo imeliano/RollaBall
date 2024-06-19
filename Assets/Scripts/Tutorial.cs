@@ -51,11 +51,13 @@ public class Tutorial : MonoBehaviour
     }
     IEnumerator GoBackToCameraSelector()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(10);
         transform.position = new Vector3(0.33f, 39.77f, -21.1f);
         PlayerController PC = GetComponent<PlayerController>();
         PC.ControlState = "Normal";
         PC.ResetCamera();
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
     void Update()
     {
