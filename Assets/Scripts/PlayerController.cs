@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UIElements;
+using System;
+using System.Numerics;
 //using System.Numerics;
 
 public class PlayerController : MonoBehaviour
@@ -48,14 +50,45 @@ public class PlayerController : MonoBehaviour
     public float FallFactor = 0.1f;
     public string MoveType = "Sloppy"; //Set to "Crisp"
 
-    public void ResetCamera()
+    public void SetState(string StateName)
     {
-        CC.Unlock();
-        FL.SetActive(false);
-        ControlState = "Normal";
-        CC.Changeoffset(0, 10, -10);
-        Camera.main.transform.rotation = Quaternion.Euler(45, 0, 0);
-        speed = Mathf.Abs(speed);
+        if (StateName == "Normal")
+        {
+            ControlState = "Normal";
+            CC.Changeoffset(0, 10, -10);
+            Camera.main.transform.rotation = Quaternion.Euler(45, 0, 0);
+            speed = Mathf.Abs(speed);
+            CC.Unlock();
+            FL.SetActive(false);
+        }
+        if (StateName == "FirstPerson")
+        {
+            Camera.main.transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+            CC.Changeoffset(0, 0, 0.1f);
+            CC.Lock();
+            movement1 = CC.transform.forward;
+            ControlState = "FirstPerson";
+            GetComponent<SphereCollider>().material.bounciness = 0;
+            speed = 10;
+            MoveType = "Sloppy";
+        }
+        if (StateName == "ThirdPerson")
+        {
+            speed = 10;
+            CC.Lock();
+            movement1 = transform.forward;
+            ControlState = "ThirdPerson";
+            FL.SetActive(true);
+            transform.Find("Force").gameObject.SetActive(true);
+            gameObject.transform.localScale = new Vector3(2, 2, 2);
+            Level7Generator.Randomize();
+        }
+        if (StateName == "Flip")
+        {
+            ControlState = "Flip";
+            Camera.main.transform.rotation = Quaternion.Euler(45, 180, 0);
+            CC.Changeoffset(0, 10, 10);
+        }
     }
     public int GetForcePush()
     {
@@ -129,6 +162,12 @@ public class PlayerController : MonoBehaviour
                 movespeed1 = 0;
             }
         }
+        else if (UnityEngine.Cursor.visible && ControlState.Equals("Flip"))
+        {
+            Vector2 movementVector = movementValue.Get<Vector2>();
+            movementX = movementVector.x * speed * speedZ * -1;
+            movementY = movementVector.y * speed * -1;
+        }
     }
     void SetCountText()
     {
@@ -184,6 +223,10 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 movement = new Vector3(movementX, 0, movementY);
             rb.AddForce(movement * transform.localScale.x);
+        }
+        if (ControlState != "FirstPerson" && ControlState != "ThirdPerson")
+        {
+            speed = 5; 
         }
         if (StartMazeTimer == true)
         {
@@ -245,7 +288,7 @@ public class PlayerController : MonoBehaviour
         TimerTextObject.SetActive(true);
         timer.IsRunning = true;
     }
-    private void OnTiggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "ChangeMass")
         {
@@ -280,7 +323,7 @@ public class PlayerController : MonoBehaviour
             speed = Mathf.Abs(speed);
             transform.position = Respawn;
             count = Mathf.RoundToInt(count * 0.9f);
-            ResetCamera();
+            SetState("Normal");
             speedZ = 1;
             TimerTextObject.SetActive(false);
             timer.IsRunning = false;
@@ -310,9 +353,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "CameraFlip")
         {
-            speed = -Mathf.Abs(speed);
-            Camera.main.transform.rotation = Quaternion.Euler(45, 180, 0);
-            CC.Changeoffset(0, 10, 10);
+            SetState("Flip");
             other.gameObject.SetActive(true);
         }
         if (other.gameObject.tag == "ChangeMass")
@@ -328,7 +369,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "CameraNormal")
         {
-            ResetCamera();
+            SetState("Normal");
             other.gameObject.SetActive(false);
             ControlState = "Normal";
             CC.Unlock();
@@ -392,15 +433,8 @@ public class PlayerController : MonoBehaviour
         {
             if (ControlState != "FirstPerson")
             {
-                Camera.main.transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
-                CC.Changeoffset(0, 0, 0.1f);
+                SetState("FirstPerson");
                 other.gameObject.SetActive(true);
-                CC.Lock();
-                movement1 = CC.transform.forward;
-                ControlState = "FirstPerson";
-                GetComponent<SphereCollider>().material.bounciness = 0;
-                speed = 10;
-                MoveType = "Sloppy";
             }
         }
         if (other.gameObject.tag == "Death1")
@@ -436,14 +470,8 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "ThirdPerson")
         {
-            other.gameObject.SetActive(false);
-            CC.Lock();
-            movement1 = transform.forward;
-            ControlState = "ThirdPerson";
-            FL.SetActive(true);
-            transform.Find("Force").gameObject.SetActive(true);
-            gameObject.transform.localScale = new Vector3(2, 2, 2);
-            Level7Generator.Randomize();
+            SetState("ThirdPerson");
+            other.gameObject.SetActive(true);
         }
         if (other.gameObject.tag == "GoToLevel7")
         {
