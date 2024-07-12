@@ -60,6 +60,7 @@ public class Tutorial : MonoBehaviour
     }
     void Update()
     {
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
         if (!Part2 && PickUpT && PickUp_T && FallingT)
         {
             Part2 = true;

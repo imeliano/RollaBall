@@ -72107,7 +72107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549332910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -155.9, y: -46.18, z: 159.2}
+  m_LocalPosition: {x: -159.061, y: -46.18, z: 198.825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2082083593}
@@ -72178,7 +72178,7 @@ MonoBehaviour:
   ForcePush: 1000
   MainCamera: {fileID: 0}
   FL: {fileID: 209873610}
-  FallFactor: 5
+  FallFactor: 0.5
   MoveType: Sloppy
 --- !u!114 &1549332918
 MonoBehaviour:

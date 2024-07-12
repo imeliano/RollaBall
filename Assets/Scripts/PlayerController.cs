@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UIElements;
-using System;
-using System.Numerics;
 //using System.Numerics;
 
 public class PlayerController : MonoBehaviour
@@ -79,9 +77,7 @@ public class PlayerController : MonoBehaviour
             movement1 = transform.forward;
             ControlState = "ThirdPerson";
             FL.SetActive(true);
-            transform.Find("Force").gameObject.SetActive(true);
             gameObject.transform.localScale = new Vector3(2, 2, 2);
-            Level7Generator.Randomize();
         }
         if (StateName == "Flip")
         {
@@ -187,7 +183,8 @@ public class PlayerController : MonoBehaviour
     }
     bool IsGrounded()
     {
-        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.1f);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z) * 10, -Vector3.up, Color.green, 1000f, false);
+        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.2f);
     }
     void FixedUpdate()
     {
@@ -211,6 +208,7 @@ public class PlayerController : MonoBehaviour
             Vector3 movement = CC.transform.forward * transform.localScale.x * movespeed1;
             movement.y += VelocityY;
             rb.velocity = (movement);
+            print(movement);
             //rb.AddForce(movement * 1.1f * transform.localScale.x * movespeed1);
         }
         else if (MoveType.Equals("Crisp"))
@@ -226,7 +224,7 @@ public class PlayerController : MonoBehaviour
         }
         if (ControlState != "FirstPerson" && ControlState != "ThirdPerson")
         {
-            speed = 5; 
+            speed = 5;
         }
         if (StartMazeTimer == true)
         {
@@ -471,12 +469,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "ThirdPerson")
         {
             SetState("ThirdPerson");
+            transform.Find("Force").gameObject.SetActive(true);
             other.gameObject.SetActive(true);
         }
         if (other.gameObject.tag == "GoToLevel7")
         {
             transform.position = new Vector3(-23, 116, 180);
             FL.SetActive(true);
+            Level7Generator.Randomize();
         }
     }
 }
