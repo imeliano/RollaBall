@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
 
     public void Rotation(float rspeed)
     {
-        PC.SetMovement(transform.forward);
+        //PC.SetMovement(transform.forward);
         transform.RotateAround(player.transform.position, Vector3.up, rspeed * Time.deltaTime * 150);
     }
 

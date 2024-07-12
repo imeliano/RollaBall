@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         }
         if (StateName == "FirstPerson")
         {
+            Camera.main.transform.rotation = Quaternion.Euler(45, 180, 0);
             Camera.main.transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
             CC.Changeoffset(0, 0, 0.1f);
             CC.Lock();
@@ -68,7 +69,6 @@ public class PlayerController : MonoBehaviour
             ControlState = "FirstPerson";
             GetComponent<SphereCollider>().material.bounciness = 0;
             speed = 10;
-            MoveType = "Sloppy";
         }
         if (StateName == "ThirdPerson")
         {
@@ -183,10 +183,10 @@ public class PlayerController : MonoBehaviour
     }
     bool IsGrounded()
     {
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z) * 10, -Vector3.up, Color.green, 1000f, false);
-        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.2f);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, Color.green, 10f, false);
+        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.25f);
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (IsGrounded())
         {
@@ -196,19 +196,17 @@ public class PlayerController : MonoBehaviour
         {
             VelocityY += Physics.gravity.y * Time.fixedDeltaTime * FallFactor;
         }
-    }
-    private void Update()
-    {
         SetCountText();
         if (ControlState.Equals("FirstPerson"))
         {
             CC.Rotation(Input.GetAxis("Mouse X"));
             movementX = CC.transform.forward.x;
             movementY = transform.forward.z;
+            print(VelocityY);
             Vector3 movement = CC.transform.forward * transform.localScale.x * movespeed1;
             movement.y += VelocityY;
-            rb.velocity = (movement);
-            print(movement);
+            rb.velocity = new Vector3 (movement.x, rb.velocity.y + VelocityY, movement.z);
+            //print(movement);
             //rb.AddForce(movement * 1.1f * transform.localScale.x * movespeed1);
         }
         else if (MoveType.Equals("Crisp"))
@@ -237,7 +235,7 @@ public class PlayerController : MonoBehaviour
                 //rb.velocity = Vector3.zero;
                 //rb.angularVelocity = Vector3.zero;
                 FinalMazeCount += CountAfterTimer;
-                if (FinalMazeCount >= 8) //224
+                if (FinalMazeCount >= 224) //224
                 {
                     StartMazeTimer = false;
                     TimerTextObject.SetActive(false);
