@@ -32,6 +32,7 @@ public class ThirdPersonController : MonoBehaviour
 
     void FixedUpdate()
     {
+        print(VelocityY);
         if (!gameObject.GetComponent<PlayerController>().ControlState.Equals("ThirdPerson"))
         {
             return;

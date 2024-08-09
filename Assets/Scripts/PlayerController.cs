@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public GameObject MainCamera;
     public GameObject FL;
     private float VelocityY = 0;
-    public float FallFactor = 0.1f;
+    public float FallFactor = 1.2f;
     public string MoveType = "Sloppy"; //Set to "Crisp"
 
     public void SetState(string StateName)
@@ -183,11 +183,12 @@ public class PlayerController : MonoBehaviour
     }
     bool IsGrounded()
     {
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, Color.green, 10f, false);
-        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.25f);
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, Color.green, 10f, false);
+        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.1f);
     }
     private void FixedUpdate()
     {
+        print(VelocityY);
         if (IsGrounded())
         {
             VelocityY = 0;
@@ -197,15 +198,26 @@ public class PlayerController : MonoBehaviour
             VelocityY += Physics.gravity.y * Time.fixedDeltaTime * FallFactor;
         }
         SetCountText();
+        
         if (ControlState.Equals("FirstPerson"))
         {
             CC.Rotation(Input.GetAxis("Mouse X"));
-            movementX = CC.transform.forward.x;
-            movementY = transform.forward.z;
-            print(VelocityY);
-            Vector3 movement = CC.transform.forward * transform.localScale.x * movespeed1;
-            movement.y += VelocityY;
-            rb.velocity = new Vector3 (movement.x, rb.velocity.y + VelocityY, movement.z);
+            if (movespeed1 != 0)
+            {
+                movementX = CC.transform.forward.x * movespeed1 * transform.localScale.x;
+                movementY = CC.transform.forward.z * movespeed1 * transform.localScale.y;
+                rb.velocity = new Vector3 (movementX, rb.velocity.y + VelocityY, movementY);
+            }
+            else
+            {
+                //Vector3 movement = CC.transform.forward * transform.localScale.x * movespeed1;
+                rb.velocity = new Vector3(0,rb.velocity.y + VelocityY,0);
+            }
+
+            //movementX = CC.transform.forward.x;
+            //movementY = transform.forward.z;
+
+            
             //print(movement);
             //rb.AddForce(movement * 1.1f * transform.localScale.x * movespeed1);
         }
@@ -222,10 +234,11 @@ public class PlayerController : MonoBehaviour
         }
         if (ControlState != "FirstPerson" && ControlState != "ThirdPerson")
         {
-            speed = 5;
+            speed = 13;
         }
         if (StartMazeTimer == true)
         {
+            speed = 20;
             //PickUpsNeeded = 4; 
             if (CountAfterTimer == 2 * PickUpsNeeded)
             {

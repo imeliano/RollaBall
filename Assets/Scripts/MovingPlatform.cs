@@ -36,7 +36,7 @@ public class MovingPlatform : MonoBehaviour
         if (IsMoving == true)
         {
             transform.position += Direction;
-            //TotalDistance += Direction.magnitude;
+            TotalDistance += Direction.magnitude;
             if (TotalDistance >= Distance)
             {
                 if (IsRepeating == true)
