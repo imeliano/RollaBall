@@ -188,7 +188,6 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        print(VelocityY);
         if (IsGrounded())
         {
             VelocityY = 0;
