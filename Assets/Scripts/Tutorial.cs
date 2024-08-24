@@ -12,6 +12,11 @@ public class Tutorial : MonoBehaviour
     public GameObject Text4;
     public GameObject Text5;
     public GameObject Text6;
+    public GameObject Text7;
+    public GameObject Text8;
+    public GameObject Text9;
+    public GameObject Text10;
+    public GameObject Text11;
     private int TriggerCount = 0;
     private bool PickUpT = false;
     private bool PickUp_T = false;
@@ -49,14 +54,26 @@ public class Tutorial : MonoBehaviour
         Text3.SetActive(false);
         Text1.SetActive(false);
     }
+    IEnumerator StartPart4()
+    {
+        yield return new WaitForSeconds(3);
+        Text7.SetActive(false);
+        Text8.SetActive(true);
+        yield return new WaitForSeconds(3);
+        Text8.SetActive(false);
+        Text9.SetActive(true);
+
+        
+    }
     IEnumerator GoBackToCameraSelector()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(30);
         transform.position = new Vector3(0.33f, 39.77f, -21.1f);
         PlayerController PC = GetComponent<PlayerController>();
         PC.SetState("Normal");
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        Text9.SetActive(true);
     }
     void Update()
     {
@@ -130,37 +147,51 @@ public class Tutorial : MonoBehaviour
         if (other.gameObject.tag == "GoToPart4")
         {
             transform.position = new Vector3(0.33f, 39.77f, -21.1f);
+            Text6.SetActive(false);
+            Text7.SetActive(true);
+            StartCoroutine(StartPart4());
         }
-
-
-
+        if (other.gameObject.name == "CameraChange")
+        {
+            Text10.SetActive(false);
+        }
         if (other.gameObject.tag == "CameraDownTP")
         {
             transform.position = new Vector3(-78.37f, -9, 124);
+            Text9.SetActive(false);
+            Text10.SetActive(true);
             StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "CameraLeftTP")
         {
             transform.position = new Vector3(-156, -9, 14);
+            Text9.SetActive(false);
+            Text10.SetActive(true);
             StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "CameraFlipTP")
         {
             transform.position = new Vector3(-38, -9, -114);
+            Text9.SetActive(false);
+            Text10.SetActive(true);
             StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "FirstPersonTP")
         {
             transform.position = new Vector3(117, -9, -41);
+            Text9.SetActive(false);
+            Text10.SetActive(true);
             StartCoroutine(GoBackToCameraSelector());
         }
 
         if (other.gameObject.tag == "ThirdPersonTP")
         {
             transform.position = new Vector3(66, -9, 102);
+            Text9.SetActive(false);
+            Text10.SetActive(true);
             StartCoroutine(GoBackToCameraSelector()); 
         }
         //other.gameObject.SetActive(false);
