@@ -24,6 +24,9 @@ public class Tutorial : MonoBehaviour
     private bool Part2 = false;
     private bool DeathBlock = false;
     private bool Level3 = false;
+    public MeshCollider Simple;
+    public MeshCollider Complex;
+    public BoxCollider TFirstPersonCC;
 
 
     void Start()
@@ -62,8 +65,9 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(3);
         Text8.SetActive(false);
         Text9.SetActive(true);
-
-        
+        yield return new WaitForSeconds(4);
+        Simple.isTrigger = true;
+        Complex.isTrigger = true;
     }
     IEnumerator GoBackToCameraSelector()
     {
@@ -151,9 +155,10 @@ public class Tutorial : MonoBehaviour
             Text7.SetActive(true);
             StartCoroutine(StartPart4());
         }
-        if (other.gameObject.name == "CameraChange")
+        if (other.gameObject.name == "CameraChange" || other.gameObject.GetComponent<BoxCollider>() == TFirstPersonCC)
         {
             Text10.SetActive(false);
+            print("yay");
         }
         if (other.gameObject.tag == "CameraDownTP")
         {
