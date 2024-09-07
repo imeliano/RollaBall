@@ -1,2 +1,2 @@
 # RollaBall
- A cool video game
+ strangely circular 
