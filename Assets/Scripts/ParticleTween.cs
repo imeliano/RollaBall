@@ -17,6 +17,6 @@ public class ParticleTween : MonoBehaviour
     void Update()
     {
 
-        transform.LookAt(centerDirection.transform.position);
+        //transform.LookAt(centerDirection.transform.position);
     }
 }
