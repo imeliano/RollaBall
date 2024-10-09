@@ -28,6 +28,12 @@ public class Tutorial : MonoBehaviour
     public MeshCollider Simple;
     public MeshCollider Complex;
     public BoxCollider TFirstPersonCC;
+    public int CameraTests; 
+    public GameObject Portal; 
+    public GameObject Sphere1;
+    public GameObject Sphere2;
+    public GameObject Sphere3;
+
 
 
     void Start()
@@ -72,13 +78,27 @@ public class Tutorial : MonoBehaviour
     }
     IEnumerator GoBackToCameraSelector()
     {
-        yield return new WaitForSeconds(30);
-        transform.position = new Vector3(0.33f, 39.77f, -21.1f);
+        yield return new WaitForSeconds(3);
+        
         PlayerController PC = GetComponent<PlayerController>();
         PC.SetState("Normal");
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        Text9.SetActive(true);
+        
+        if (CameraTests == 5)
+        {
+            transform.position = new Vector3(0.33f, 1000f, -21.1f);
+            Text9.SetActive(false);
+            Portal.SetActive(true);
+            Sphere1.SetActive(true);
+            Sphere2.SetActive(true);
+            Sphere3.SetActive(true);
+        }
+        else
+        {
+            Text9.SetActive(true);
+            transform.position = new Vector3(0.33f, 39.77f, -21.1f);
+        }
     }
     void Update()
     {
@@ -93,6 +113,7 @@ public class Tutorial : MonoBehaviour
             DeathBlock = false;
             StartCoroutine(StartPart3());
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -166,6 +187,7 @@ public class Tutorial : MonoBehaviour
             transform.position = new Vector3(-78.37f, -9, 124);
             Text9.SetActive(false);
             Text10.SetActive(true);
+            CameraTests += 1; 
             StartCoroutine(GoBackToCameraSelector());
         }
 
@@ -174,6 +196,7 @@ public class Tutorial : MonoBehaviour
             transform.position = new Vector3(-156, -9, 14);
             Text9.SetActive(false);
             Text10.SetActive(true);
+            CameraTests += 1; 
             StartCoroutine(GoBackToCameraSelector());
         }
 
@@ -182,6 +205,7 @@ public class Tutorial : MonoBehaviour
             transform.position = new Vector3(-38, -9, -114);
             Text9.SetActive(false);
             Text10.SetActive(true);
+            CameraTests += 1; 
             StartCoroutine(GoBackToCameraSelector());
         }
 
@@ -190,6 +214,7 @@ public class Tutorial : MonoBehaviour
             transform.position = new Vector3(117, -9, -41);
             Text9.SetActive(false);
             Text10.SetActive(true);
+            CameraTests += 1; 
             StartCoroutine(GoBackToCameraSelector());
         }
 
@@ -198,6 +223,7 @@ public class Tutorial : MonoBehaviour
             transform.position = new Vector3(66, -9, 102);
             Text9.SetActive(false);
             Text10.SetActive(true);
+            CameraTests += 1; 
             StartCoroutine(GoBackToCameraSelector()); 
         }
         //other.gameObject.SetActive(false);
