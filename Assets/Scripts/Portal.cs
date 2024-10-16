@@ -7,7 +7,7 @@ public class Portal : MonoBehaviour
     public GameObject portal;
     private GameObject player;
     public float forcepower;
-
+    
     void Start()
     {
         
@@ -17,6 +17,8 @@ public class Portal : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             player = other.gameObject;
+            //transform.DOMove(/*homescreen room*/, 5, false)
+            //.SetEase(Ease.easeOutBack);
         }
     }
 

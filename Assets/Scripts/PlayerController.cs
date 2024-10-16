@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private float VelocityY = 0;
     public float FallFactor = 1.2f;
     public string MoveType = "Sloppy"; //Set to "Crisp"
+    public bool CanMove = true;
 
     public void SetState(string StateName)
     {
@@ -85,6 +86,13 @@ public class PlayerController : MonoBehaviour
             Camera.main.transform.rotation = Quaternion.Euler(45, 180, 0);
             CC.Changeoffset(0, 10, 10);
         }
+    }
+    public void FreezeXZ(bool Freeze)
+    {
+        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        CC.Unlock();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
     public int GetForcePush()
     {
@@ -207,7 +215,7 @@ public class PlayerController : MonoBehaviour
                 movementY = CC.transform.forward.z * movespeed1 * transform.localScale.y;
                 rb.velocity = new Vector3 (movementX, rb.velocity.y + VelocityY, movementY);
             }
-            else
+            else //if (CanMove == true)
             {
                 //Vector3 movement = CC.transform.forward * transform.localScale.x * movespeed1;
                 rb.velocity = new Vector3(0,rb.velocity.y + VelocityY,0);

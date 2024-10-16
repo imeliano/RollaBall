@@ -35,7 +35,6 @@ public class Tutorial : MonoBehaviour
     public GameObject Sphere3;
 
 
-
     void Start()
     {
 
@@ -79,15 +78,17 @@ public class Tutorial : MonoBehaviour
     IEnumerator GoBackToCameraSelector()
     {
         yield return new WaitForSeconds(3);
-        
         PlayerController PC = GetComponent<PlayerController>();
         PC.SetState("Normal");
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         
-        if (CameraTests == 5)
+        if (CameraTests == 1)
         {
             transform.position = new Vector3(0.33f, 1000f, -21.1f);
+            PC.SetState("FirstPerson");
+            PC.FreezeXZ(true);
+            PC.CanMove = false;
             Text9.SetActive(false);
             Portal.SetActive(true);
             Sphere1.SetActive(true);
