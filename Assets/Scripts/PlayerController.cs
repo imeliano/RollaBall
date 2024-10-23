@@ -49,6 +49,15 @@ public class PlayerController : MonoBehaviour
     public string MoveType = "Sloppy"; //Set to "Crisp"
     public bool CanMove = true;
 
+    public void MenuScreen()
+    {
+        transform.position = new Vector3(0.33f, 1000f, 20f);
+        SetState("FirstPerson");
+        FreezeXZ(true);
+        RigidbodyGravity(false);
+        CanMove = false;
+        //remove death plane/ignore death plane
+    }
     public void SetState(string StateName)
     {
         if (StateName == "Normal")
@@ -93,6 +102,10 @@ public class PlayerController : MonoBehaviour
         CC.Unlock();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+    public void RigidbodyGravity(bool GravOn)
+    {
+        rb.useGravity = GravOn;
     }
     public int GetForcePush()
     {
@@ -196,7 +209,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (IsGrounded())
+        if (IsGrounded() || CanMove == false)
         {
             VelocityY = 0;
         }
@@ -215,9 +228,8 @@ public class PlayerController : MonoBehaviour
                 movementY = CC.transform.forward.z * movespeed1 * transform.localScale.y;
                 rb.velocity = new Vector3 (movementX, rb.velocity.y + VelocityY, movementY);
             }
-            else //if (CanMove == true)
+            else 
             {
-                //Vector3 movement = CC.transform.forward * transform.localScale.x * movespeed1;
                 rb.velocity = new Vector3(0,rb.velocity.y + VelocityY,0);
             }
 

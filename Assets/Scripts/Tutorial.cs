@@ -35,6 +35,7 @@ public class Tutorial : MonoBehaviour
     public GameObject Sphere3;
 
 
+
     void Start()
     {
 
@@ -75,6 +76,7 @@ public class Tutorial : MonoBehaviour
         Simple.isTrigger = true;
         Complex.isTrigger = true;
     }
+
     IEnumerator GoBackToCameraSelector()
     {
         yield return new WaitForSeconds(3);
@@ -85,10 +87,7 @@ public class Tutorial : MonoBehaviour
         
         if (CameraTests == 1)
         {
-            transform.position = new Vector3(0.33f, 1000f, -21.1f);
-            PC.SetState("FirstPerson");
-            PC.FreezeXZ(true);
-            PC.CanMove = false;
+            PC.MenuScreen();
             Text9.SetActive(false);
             Portal.SetActive(true);
             Sphere1.SetActive(true);
