@@ -27,7 +27,8 @@ public class Portal : MonoBehaviour
     {
         if (player != null)
         {
-            forcepower += 50 + Time.deltaTime;
+            forcepower += Time.deltaTime;
+            forcepower = Mathf.Clamp(forcepower, 5f, 10f);
             Vector3 Force = (gameObject.transform.position - player.transform.position) * forcepower; 
             player.GetComponent<Rigidbody>().AddForce(Force.normalized, ForceMode.Impulse);
         }

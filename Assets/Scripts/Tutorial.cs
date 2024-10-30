@@ -18,13 +18,11 @@ public class Tutorial : MonoBehaviour
     public GameObject Text9;
     public GameObject Text10;
     public GameObject Text11;
-    private int TriggerCount = 0;
     private bool PickUpT = false;
     private bool PickUp_T = false;
     private bool FallingT = false;
     private bool Part2 = false;
     private bool DeathBlock = false;
-    private bool Level3 = false;
     public MeshCollider Simple;
     public MeshCollider Complex;
     public BoxCollider TFirstPersonCC;
@@ -38,7 +36,10 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
-
+    }
+    public void OnClick()
+    {
+        print("yay");
     }
     IEnumerator StartPart2()
     {
@@ -93,6 +94,7 @@ public class Tutorial : MonoBehaviour
             Sphere1.SetActive(true);
             Sphere2.SetActive(true);
             Sphere3.SetActive(true);
+            GameObject.Find("DeathPlane").SetActive(false);
         }
         else
         {
