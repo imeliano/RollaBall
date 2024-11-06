@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public string MoveType = "Sloppy"; //Set to "Crisp"
     public bool CanMove = true;
 
+
     public void MenuScreen()
     {
         transform.position = new Vector3(0.33f, 1000f, 20f);
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         FreezeXZ(true);
         RigidbodyGravity(false);
         CanMove = false;
+
         //remove death plane/ignore death plane
     }
     public void SetState(string StateName)

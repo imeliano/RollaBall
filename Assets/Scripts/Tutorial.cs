@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using System.Numerics;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 
 public class Tutorial : MonoBehaviour
@@ -31,16 +31,19 @@ public class Tutorial : MonoBehaviour
     public GameObject Sphere1;
     public GameObject Sphere2;
     public GameObject Sphere3;
-
+    public Button Print;
 
 
     void Start()
     {
+        //Button BTN = Print.GetComponent<Button>();
+        //BTN.clicked += OnClick;
     }
     public void OnClick()
     {
         print("yay");
     }
+
     IEnumerator StartPart2()
     {
         yield return new WaitForSeconds(6);
