@@ -31,18 +31,13 @@ public class Tutorial : MonoBehaviour
     public GameObject Sphere1;
     public GameObject Sphere2;
     public GameObject Sphere3;
-    public Button Print;
 
 
     void Start()
     {
-        //Button BTN = Print.GetComponent<Button>();
-        //BTN.clicked += OnClick;
+        
     }
-    public void OnClick()
-    {
-        print("yay");
-    }
+
 
     IEnumerator StartPart2()
     {
@@ -91,7 +86,7 @@ public class Tutorial : MonoBehaviour
         
         if (CameraTests == 1)
         {
-            PC.MenuScreen();
+            //PC.MenuScreen();
             Text9.SetActive(false);
             Portal.SetActive(true);
             Sphere1.SetActive(true);
@@ -177,7 +172,7 @@ public class Tutorial : MonoBehaviour
         }
         if (other.gameObject.tag == "GoToPart4")
         {
-            transform.position = new Vector3(0.33f, 39.77f, -21.1f);
+            transform.position = new Vector3(-17f, 41.11f, 140f);
             Text6.SetActive(false);
             Text7.SetActive(true);
             StartCoroutine(StartPart4());
