@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
     }
     bool IsGrounded()
     {
-        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, Color.green, 10f, false);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, Color.green, 10f, false);
         return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.1f);
     }
     private void FixedUpdate()

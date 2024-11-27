@@ -11,7 +11,7 @@ public class Portal : MonoBehaviour
     
     void Start()
     {
-        player.GetComponent<Rigidbody>().useGravity = true;
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -31,10 +31,10 @@ public class Portal : MonoBehaviour
         {
             player.GetComponent<Rigidbody>().useGravity = false;
             forcepower += Time.deltaTime;
-            forcepower = Mathf.Clamp(forcepower, 5f, 10f);
-            Vector3 side = new Vector3 (0, 0, 0);
+            forcepower = Mathf.Clamp(forcepower, 5f, 50f);
+            Vector3 side = new Vector3 (1, 0, 1);
             Vector3 Force = (gameObject.transform.position - player.transform.position + side) * forcepower;
-            player.GetComponent<Rigidbody>().AddForce(Force.normalized * Time.deltaTime, ForceMode.VelocityChange);
+            player.GetComponent<Rigidbody>().AddForce(Force.normalized * Time.deltaTime, ForceMode.Impulse);
         }
     }
 }

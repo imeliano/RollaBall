@@ -15296,11 +15296,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pathwaypoints:
+  - {x: -1.36, y: 42.77, z: 14.45}
   - {x: 0.445, y: 45.24, z: 14.45}
   - {x: 2.1, y: 42.77, z: 14.45}
   - {x: 0.46, y: 39, z: 14.45}
   - {x: -1.36, y: 42.77, z: 14.45}
-  - {x: 0.445, y: 45.24, z: 14.45}
 --- !u!23 &610549709
 MeshRenderer:
   m_ObjectHideFlags: 0
