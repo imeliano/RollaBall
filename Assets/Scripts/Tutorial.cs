@@ -78,27 +78,33 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator GoBackToCameraSelector()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(30);
         PlayerController PC = GetComponent<PlayerController>();
         PC.SetState("Normal");
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        Text10.SetActive(false);
         
-        if (CameraTests == 1)
+        if (CameraTests == 5)
         {
-            //PC.MenuScreen();
+            TransitionToMenu()
             Text9.SetActive(false);
-            Portal.SetActive(true);
+            /*Portal.SetActive(true);
             Sphere1.SetActive(true);
             Sphere2.SetActive(true);
             Sphere3.SetActive(true);
-            GameObject.Find("DeathPlane").SetActive(false);
+            GameObject.Find("DeathPlane").SetActive(false);*/
+            
         }
-        else
+        else ()
         {
             Text9.SetActive(true);
             transform.position = new Vector3(0.33f, 39.77f, -21.1f);
         }
+    }
+    private void TransitionToMenu()
+    {
+        print("wait");
     }
     void Update()
     {
@@ -172,7 +178,7 @@ public class Tutorial : MonoBehaviour
         }
         if (other.gameObject.tag == "GoToPart4")
         {
-            transform.position = new Vector3(-17f, 41.11f, 140f);
+            transform.position = new Vector3(0f, 38f, -20f);
             Text6.SetActive(false);
             Text7.SetActive(true);
             StartCoroutine(StartPart4());
