@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
         FreezeXZ(true);
         RigidbodyGravity(false);
         CanMove = false;
-
         //remove death plane/ignore death plane
     }
     public void SetState(string StateName)

@@ -30,7 +30,7 @@ public class ThirdPersonController : MonoBehaviour
         RB = transform.gameObject.GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!gameObject.GetComponent<PlayerController>().ControlState.Equals("ThirdPerson"))
         {
@@ -41,6 +41,7 @@ public class ThirdPersonController : MonoBehaviour
             RB.AddForce(FMovement);
             return;
         }
+
         if (Input.mouseScrollDelta.magnitude > 0)
         {
             FL.m_Orbits[0].m_Height = Rig;

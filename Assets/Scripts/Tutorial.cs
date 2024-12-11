@@ -32,10 +32,9 @@ public class Tutorial : MonoBehaviour
     public GameObject Sphere2;
     public GameObject Sphere3;
 
-
     void Start()
     {
-        
+
     }
 
 
@@ -78,25 +77,24 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator GoBackToCameraSelector()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(3); //30
         PlayerController PC = GetComponent<PlayerController>();
         PC.SetState("Normal");
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         Text10.SetActive(false);
         
-        if (CameraTests == 5)
+        if (CameraTests == 1) //5
         {
-            TransitionToMenu()
+            TransitionToMenu();
             Text9.SetActive(false);
             /*Portal.SetActive(true);
             Sphere1.SetActive(true);
             Sphere2.SetActive(true);
             Sphere3.SetActive(true);
             GameObject.Find("DeathPlane").SetActive(false);*/
-            
         }
-        else ()
+        else
         {
             Text9.SetActive(true);
             transform.position = new Vector3(0.33f, 39.77f, -21.1f);
@@ -104,7 +102,9 @@ public class Tutorial : MonoBehaviour
     }
     private void TransitionToMenu()
     {
-        print("wait");
+        PlayerController PC = GetComponent<PlayerController>();
+        PC.SetState("ThirdPerson");
+        transform.position = new Vector3(-201.88f, -11.29f, 141.04f);
     }
     void Update()
     {
