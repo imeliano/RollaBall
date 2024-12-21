@@ -20,10 +20,11 @@ public class ThirdPersonController : MonoBehaviour
     public Vector3 FMovement = Vector3.zero;
 
 
-
+    //transform.localScale.y / 2
     bool IsGrounded()
     {
-        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), -Vector3.up, 0.1f);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z), -Vector3.up, Color.green, 10f, false);
+        return Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z), -Vector3.up, transform.localScale.y / 2f);
     }
     void Start()
     {
@@ -73,6 +74,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             VelocityY += Physics.gravity.y * Time.deltaTime * FallFactor;
         }
+        print(VelocityY);
         float Vertical = Input.GetAxisRaw("Vertical");
         float Horizontal = Input.GetAxisRaw("Horizontal");
         Vector3 Direction = new Vector3(Horizontal, 0, Vertical).normalized;
