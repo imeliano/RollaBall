@@ -77,7 +77,7 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator GoBackToCameraSelector()
     {
-        yield return new WaitForSeconds(30); //30
+        yield return new WaitForSeconds(5); //30
         PlayerController PC = GetComponent<PlayerController>();
         PC.SetState("Normal");
         GetComponent<Rigidbody>().velocity = Vector3.zero;

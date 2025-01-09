@@ -42,6 +42,7 @@ TagManager:
   - CameraLeftTP
   - FirstPersonTP
   - ThirdPersonTP
+  - PortalActivate
   layers:
   - Default
   - TransparentFX

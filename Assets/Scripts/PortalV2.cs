@@ -52,8 +52,12 @@ public class PortalV2 : MonoBehaviour
     }
     void PortalActivate()
     {
-        BlueGoal.transform.DOMove(new Vector3(-229.4f, -148.9f, 106.8f), 4f, false);
+        BlueGoal.transform.DOLocalMove(new Vector3(-229.4f, -148.9f, 106.8f), 2f, false);
+        BlueGoal.transform.DOLocalMove(new Vector3(-229.4f, -148.9f, 106.8f), 4f, false);
+        BlueGoal.transform.DOLocalMove(new Vector3(-229.4f, -148.9f, 106.8f), 4f, false);
+        BlueGoal.transform.DOLocalMove(new Vector3(-229.4f, -148.9f, 106.8f), 4f, false);
 
+        
     }
     private void OnTriggerStay(Collider other)
     {
