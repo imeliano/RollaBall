@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph 1
+  m_Name: Shader Graphs_PortalShader
   m_Shader: {fileID: -6465566751694194690, guid: 750cbea9cece6024cb529f2a3fcfe90e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_ddc00a6b8af44ed6b6033369ff247fdd:
+        m_Texture: {fileID: 2800000, guid: 0bbe9e40fcb5bfb4988f772d81dcdcbb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -32,5 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
-    m_Colors: []
+    m_Colors:
+    - Color_8092e65d656d41c1ba9f690156431fe1: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_e90a61d4dbfe48cb88c4d48c231ca1d5: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
