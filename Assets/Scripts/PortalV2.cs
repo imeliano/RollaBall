@@ -38,6 +38,8 @@ public class PortalV2 : MonoBehaviour
     public GameObject BlueBall;
     public GameObject YellowBall;
 
+    public GameObject Portal;
+    public GameObject EerieLight;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,10 @@ public class PortalV2 : MonoBehaviour
 
         Ramp1.transform.DOLocalMove(new Vector3(-270.3f, 213.9f, 40.3f), 2f, false);
         yield return new WaitForSeconds(1f);
+        
+        //EerieLight.DOIntensity(Color to, float duration);
+        
+        
 
         Roof2.transform.DOLocalMove(new Vector3(-41.3f, 48.6f, 234.9f), 2f, false);
         yield return new WaitForSeconds(1f);
@@ -128,7 +134,10 @@ public class PortalV2 : MonoBehaviour
         PowerUp7.transform.DOLocalMove(new Vector3(221.3f, 13.1f, 123.2f), 2f, false);
         yield return new WaitForSeconds(0.5f);
 
+        //Portal.DOFade(float to, float duration);
+
         Ramp4.transform.DOLocalMove(new Vector3(-144f, 14.2f, 5.6f), 2f, false);
+
 
         PowerUp8.transform.DOLocalMove(new Vector3(0, 0, 0), 2f, false);
 
