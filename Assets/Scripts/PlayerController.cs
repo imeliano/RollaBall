@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 //using System.Numerics;
 
 public class PlayerController : MonoBehaviour
@@ -508,6 +509,12 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-23, 116, 180);
             FL.SetActive(true);
             Level7Generator.Randomize();
+        }
+        if (other.gameObject.tag == "MainGameTP")
+        {
+            print("yay");
+            SceneManager.LoadScene("MainGame");
+
         }
     }
 }

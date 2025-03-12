@@ -74,7 +74,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             VelocityY += Physics.gravity.y * Time.deltaTime * FallFactor;
         }
-        print(VelocityY);
+        //print(VelocityY);
         float Vertical = Input.GetAxisRaw("Vertical");
         float Horizontal = Input.GetAxisRaw("Horizontal");
         Vector3 Direction = new Vector3(Horizontal, 0, Vertical).normalized;

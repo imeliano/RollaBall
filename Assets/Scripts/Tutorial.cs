@@ -192,7 +192,6 @@ public class Tutorial : MonoBehaviour
         if (other.gameObject.name == "CameraChange" || other.gameObject.GetComponent<BoxCollider>() == TFirstPersonCC)
         {
             Text10.SetActive(false);
-            print("yay");
         }
         if (other.gameObject.tag == "CameraDownTP")
         {

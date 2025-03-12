@@ -17,7 +17,6 @@ public class Portal : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            print("yay");
             player = other.gameObject;
             //transform.DOMove(/*homescreen room*/, 5, false)
             //.SetEase(Ease.easeOutBack);
