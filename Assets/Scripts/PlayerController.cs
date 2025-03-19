@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject PickUp;
     public TextMeshProUGUI countText;
     public TextMeshProUGUI GoalsMade;
+    public GameObject GoalsMadeObject;
     public GameObject winTextObject;
     public GameObject TimerTextObject;
     private Rigidbody rb;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private int MazeTimer = 20;
     private int FinalMazeCount = 0;
     public TextMeshProUGUI PowerUpText;
+    public GameObject ForcePushObject;
     public int ForcePush;
     public GameObject MainCamera;
     public GameObject FL;
@@ -149,8 +151,11 @@ public class PlayerController : MonoBehaviour
         count = 0;
         InvisCount = 0;
         SetCountText();
+        print("yay");
         winTextObject.SetActive(false);
         TimerTextObject.SetActive(false);
+        GoalsMadeObject.SetActive(false);
+        ForcePushObject.SetActive(false);
     }
     void OnMove(InputValue movementValue)
     {

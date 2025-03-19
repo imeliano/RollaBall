@@ -61,6 +61,8 @@ public class PortalV2 : MonoBehaviour
         if (other.gameObject.tag == "PortalActivate")
         {
             StartCoroutine(PortalActivate());
+            other.gameObject.SetActive(false);
+            print("yay");
         }
     }
     IEnumerator PortalActivate()

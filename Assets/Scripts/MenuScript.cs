@@ -8,6 +8,10 @@ public class MenuScript : MonoBehaviour
 
     public Button Print;
     public GameObject Player;
+    public GameObject Count;
+    public GameObject ForcePush;
+    public GameObject GoalsMade;
+
 
     void Start()
     {
@@ -19,12 +23,11 @@ public class MenuScript : MonoBehaviour
         Print.GetComponent<AudioSource>().Play();
         Player.SetActive(true);
         gameObject.SetActive(false);
-        print("yay");
+        Count.SetActive(true);
 
     }
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
