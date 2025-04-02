@@ -62,7 +62,6 @@ public class PortalV2 : MonoBehaviour
         {
             StartCoroutine(PortalActivate());
             other.gameObject.SetActive(false);
-            print("yay");
         }
     }
     IEnumerator PortalActivate()

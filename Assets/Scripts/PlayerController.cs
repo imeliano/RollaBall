@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        CC.Unlock();
         ControlState = "Normal";
         MoveType = "Sloppy";
         rb = GetComponent<Rigidbody>();
@@ -518,6 +519,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "MainGameTP")
         {
             print("yay");
+            CC.Unlock();
             SceneManager.LoadScene("MainGame");
 
         }
